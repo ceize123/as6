@@ -18,8 +18,8 @@
                 <mat-card-subtitle>Album Title</mat-card-subtitle>
             </mat-card-header>
 
-            <img mat-card-image class="album-cover" routerLink="/album" src="{{album.images[0].url}}" alt="album art">
-            <strong>Release Date: </strong>{{album.release_date}}<br />
+            <img mat-card-image class="album-cover" [routerLink]="['/album', album.id]" src="{{album.images[0].url}}" alt="album art">
+            <strong>Release Date: </strong>{{album.release_date | date: 'shortDate'}}<br />
             <strong>Tracks: </strong>{{album.total_tracks}}
         </mat-card>
     </div>

@@ -16,11 +16,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AlbumComponent } from './album/album.component';
 import { ArtistDiscographyComponent } from './artist-discography/artist-discography.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { FavouritesComponent } from './favourites/favourites.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { InterceptTokenService } from './intercept-token.service';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +39,11 @@ import { ArtistDiscographyComponent } from './artist-discography/artist-discogra
     AboutComponent,
     NotFoundComponent,
     AlbumComponent,
-    ArtistDiscographyComponent
+    ArtistDiscographyComponent,
+    SearchResultComponent,
+    FavouritesComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +60,16 @@ import { ArtistDiscographyComponent } from './artist-discography/artist-discogra
     MatInputModule,
     MatCardModule,
     MatChipsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule,
+    FormsModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptTokenService,
+    multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
